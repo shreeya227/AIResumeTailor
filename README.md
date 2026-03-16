@@ -7,24 +7,19 @@ A Chrome extension allows users to extract job descriptions directly from job li
 ## Architecture:
 
 Job Posting (LinkedIn, etc.)
-        │
-        ▼
+        |
 Chrome Extension
 Extract Job Description
         │
-        ▼
 Spring Boot Backend API
         │
         ├── Skill Extraction (Gemini API)
         ├── Resume Tailoring (Gemini API)
         │
-        ▼
 Resume Template Engine (LaTeX)
         │
-        ▼
 PDF Compilation (pdflatex)
         │
-        ▼
 Download Tailored Resume
 
 ### Tech Stack
