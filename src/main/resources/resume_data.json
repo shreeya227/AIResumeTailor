@@ -1,0 +1,159 @@
+{
+  "summary": "Backend-focused software engineer with 5+ years of experience building scalable distributed systems, automation pipelines, and AI-driven backend services using Python, Java, and TypeScript. Experienced in developing reliable microservices, ML pipelines, and cloud-native infrastructure for data-intensive and healthcare applications.",
+
+  "skills": [
+    "Python",
+    "Java",
+    "TypeScript",
+    "JavaScript",
+    "PyTorch",
+    "Keras",
+    "Scikit-learn",
+    "Deep Learning",
+    "Neural Networks",
+    "Computer Vision",
+    "Large Language Models",
+    "GenAI",
+    "React",
+    "Vue.js",
+    "Node.js",
+    "FastAPI",
+    "Express",
+    "OpenAI API",
+    "Azure OpenAI",
+    "GitHub Copilot",
+    "AWS",
+    "Docker",
+    "Kubernetes",
+    "GitHub Actions",
+    "Jenkins",
+    "Terraform",
+    "MySQL",
+    "PostgreSQL",
+    "Redis",
+    "MongoDB",
+    "Microservices",
+    "Event-Driven Systems",
+    "API Design",
+    "REST APIs",
+    "GraphQL",
+    "Web Services",
+    "Unit Testing",
+    "Integration Testing",
+    "Observability",
+    "Secure Coding",
+    "Agile",
+    "Scrum"
+  ],
+
+  "experience": [
+    {
+      "company": "University of Louisiana at Lafayette",
+      "location": "Lafayette, Louisiana",
+      "role": "Graduate Assistant - Software/ML Systems",
+      "start": "Aug 2024",
+      "end": "Dec 2025",
+      "bullets": [
+        "Architected and deployed scalable Python backend services and workflow automation pipelines processing 3,300+ healthcare records, enabling automated experimentation, analytics reporting, and reliable execution of ML workflows.",
+        "Refactored research prototypes into modular microservices with structured logging, monitoring, and automated tests, improving system performance by 20–30% and increasing reliability of distributed experimentation pipelines.",
+        "Designed data validation and feature-processing pipelines supporting end-to-end ML model training, evaluation, and inference workflows across large clinical datasets.",
+        "Implemented observability practices, including structured logging and error tracking, improving debugging efficiency and operational visibility for ML experimentation systems."
+      ]
+    },
+    {
+      "company": "Enfinitty Ventures Inc",
+      "location": "San Diego, CA",
+      "role": "Software Engineer - Full Stack",
+      "start": "Jun 2025",
+      "end": "Aug 2025",
+      "bullets": [
+        "Built scalable full-stack product features using React, TypeScript, Node.js (Express), and MongoDB, supporting thousands of users in a production UAT environment.",
+        "Designed and implemented secure RESTful APIs for identity, authentication, and session management, enabling reliable service integration and audit-friendly request flows.",
+        "Implemented CI/CD pipelines using Docker, GitHub Actions, and AWS, integrating automated testing, structured logging, and error tracking to reduce deployment downtime by ~40% and enable faster, safer releases.",
+        "Developed Python-based backend components that processed high-volume datasets and supported production web services."
+      ]
+    },
+    {
+      "company": "Deerhold Ltd.",
+      "location": "Sifal, Kathmandu",
+      "role": "Software Engineer - Backend",
+      "start": "Jan 2023",
+      "end": "Dec 2023",
+      "bullets": [
+        "Designed and deployed high-throughput backend services in Java and Python, supporting scalable API-driven data workflows across internal product systems.",
+        "Developed RESTful microservices for metadata processing and record linking, improving system scalability and data integration across services.",
+        "Optimized PostgreSQL schemas and SQL queries, improving data retrieval performance by ~35% and reducing API latency.",
+        "Automated deployments and environment provisioning using Docker, AWS, and CI/CD pipelines, while implementing structured logging and monitoring to improve system reliability and troubleshooting."
+      ]
+    },
+    {
+      "company": "Deerhold Ltd.",
+      "location": "Sifal, Kathmandu",
+      "role": "Associate Software Engineer - Full Stack",
+      "start": "Aug 2020",
+      "end": "Dec 2022",
+      "bullets": [
+        "Developed scalable full-stack web features using Java (Spring/Grails), Vue.js, and JavaScript, supporting 1,000+ active users in a production SaaS platform.",
+        "Implemented secure authentication and authorization workflows using JWT and RBAC, strengthening application security and preventing unauthorized access.",
+        "Optimized backend services and PostgreSQL queries through indexing and tuning, reducing p95 API latency by ~20%.",
+        "Refactored legacy components into modular services and reusable APIs while contributing to Agile development, code reviews, testing, and production support to deliver stable releases."
+      ]
+    }
+  ],
+
+  "projects": [
+    {
+      "name": "Fairness-Aware Deep Learning for Visual Field Prediction from OCT",
+      "type": "Master’s Thesis",
+      "link": "https://github.com/shreeya227/JMI-VF-Prediction",
+      "technologies": [
+        "Python",
+        "PyTorch",
+        "3D CNN",
+        "Computer Vision",
+        "Medical AI"
+      ],
+      "bullets": [
+        "Designed and trained a 3D deep learning model (3D ResNet-18) to predict 52-point visual field sensitivity from volumetric OCT scans using 3,300+ clinical samples.",
+        "Proposed an Adaptive Fairness Feedback (AFF) training strategy to improve subgroup performance and reduce demographic prediction disparities.",
+        "Achieved MAE 3.26 dB, RMSE 5.00 dB, and R² = 0.59, with 87% of predictions within ±3 dB of ground truth; manuscript under review at Journal of Medical Imaging (SPIE)."
+      ]
+    },
+    {
+      "name": "Glaucoma Progression Prediction from RNFLT Maps",
+      "link": "https://github.com/shreeya227/Medical-AI",
+      "technologies": [
+        "Python",
+        "PyTorch",
+        "Deep Learning",
+        "Computer Vision",
+        "Medical Imaging"
+      ],
+      "bullets": [
+        "Developed deep learning models to predict future glaucoma progression from baseline RNFLT maps using the Harvard-GDP ophthalmology dataset.",
+        "Implemented CNN architectures (VGG16-BN, EfficientNet-B0) customized for single-channel OCT inputs (225×225) to perform binary progression classification.",
+        "Built training pipelines with class-imbalance handling using weighted BCEWithLogitsLoss and optimized models with AdamW (LR 5×10⁻⁵)."
+      ]
+    }
+  ],
+
+  "education": [
+    {
+      "school": "University of Louisiana at Lafayette",
+      "degree": "Master of Science in Computer Science",
+      "start": "Jan 2024",
+      "end": "Dec 2025",
+      "gpa": "4.0",
+      "thesis": "Fairness-Aware Deep Learning for Visual Field Prediction from OCT"
+    }
+  ],
+
+  "awards": [
+    {
+      "name": "Honors Convocation and Academic Excellence Award",
+      "organization": "University of Louisiana at Lafayette",
+      "date": "Mar 2025",
+      "description": "Awarded for maintaining a 4.0 GPA throughout graduate studies (2024–2025)."
+    }
+  ]
+}

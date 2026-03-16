@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "AI Job Agent",
+  "version": "1.0",
+  "description": "Analyze job descriptions and tailor resumes automatically",
+
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "http://localhost:8080/*"
+  ],
+
+  "action": {
+    "default_popup": "popup.html"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.linkedin.com/jobs/*",
+        "*://*.indeed.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ]
+}
