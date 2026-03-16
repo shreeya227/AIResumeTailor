@@ -1,13 +1,15 @@
 const resultElement = document.getElementById("result");
 const resumeStatusElement = document.getElementById("resumeStatus");
+const progressContainer = document.getElementById("progressContainer");
+const progressBar = document.getElementById("progressBar");
 
 document.getElementById("analyzeJob")
     .addEventListener("click", async () => {
         resultElement.innerText = "Analyzing job description...";
 
-        const jobDescription = await getJobDescription();
+        const jobData = await getJobData();
 
-        if (!jobDescription) {
+        if (!jobData) {
             resultElement.innerText = "Could not extract job description.";
             return;
         }
@@ -21,7 +23,9 @@ document.getElementById("analyzeJob")
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        description: jobDescription
+                        description: jobData.description,
+                        title: jobData.title,
+                        company: jobData.company
                     })
                 }
             );
@@ -44,16 +48,18 @@ document.getElementById("analyzeJob")
 
 document.getElementById("generateResume")
     .addEventListener("click", async () => {
-        resumeStatusElement.innerText = "Generating tailored resume...";
+        setProgress(10, "Extracting job details...");
 
-        const jobDescription = await getJobDescription();
+        const jobData = await getJobData();
 
-        if (!jobDescription) {
-            resumeStatusElement.innerText = "Could not extract job description.";
+        if (!jobData) {
+            resetProgress("Could not extract job description.");
             return;
         }
 
         try {
+            setProgress(30, "Sending resume request...");
+
             const apiResponse = await fetch(
                 "http://localhost:8080/jobs/generate-resume",
                 {
@@ -62,7 +68,9 @@ document.getElementById("generateResume")
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        description: jobDescription
+                        description: jobData.description,
+                        title: jobData.title,
+                        company: jobData.company
                     })
                 }
             );
@@ -70,6 +78,8 @@ document.getElementById("generateResume")
             if (!apiResponse.ok) {
                 throw new Error("Resume generation request failed");
             }
+
+            setProgress(75, "Building and downloading resume...");
 
             const blob = await apiResponse.blob();
             const url = window.URL.createObjectURL(blob);
@@ -83,13 +93,16 @@ document.getElementById("generateResume")
             a.remove();
             window.URL.revokeObjectURL(url);
 
-            resumeStatusElement.innerText = "Resume downloaded successfully.";
+            setProgress(100, "Resume downloaded successfully.");
+            window.setTimeout(() => {
+                progressContainer.classList.add("hidden");
+            }, 1200);
         } catch (error) {
-            resumeStatusElement.innerText = "Resume generation failed.";
+            resetProgress("Resume generation failed.");
         }
     });
 
-async function getJobDescription() {
+async function getJobData() {
     let [tab] = await chrome.tabs.query({
         active: true,
         currentWindow: true
@@ -105,7 +118,11 @@ async function getJobDescription() {
                     return;
                 }
 
-                resolve(response.description);
+                resolve({
+                    description: response.description,
+                    title: response.title || "",
+                    company: response.company || ""
+                });
             }
         );
     });
@@ -126,4 +143,18 @@ function getDownloadFileName(contentDisposition) {
 
     const match = contentDisposition.match(/filename="?([^"]+)"?/i);
     return match ? match[1] : "tailored_resume.pdf";
+}
+
+function setProgress(value, message) {
+    progressContainer.classList.remove("hidden");
+    progressContainer.setAttribute("aria-hidden", "false");
+    progressBar.style.width = `${value}%`;
+    resumeStatusElement.innerText = message;
+}
+
+function resetProgress(message) {
+    progressBar.style.width = "0%";
+    progressContainer.classList.add("hidden");
+    progressContainer.setAttribute("aria-hidden", "true");
+    resumeStatusElement.innerText = message;
 }

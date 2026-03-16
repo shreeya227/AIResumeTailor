@@ -83,8 +83,6 @@ public class ResumeDownloadGenerator {
             String output = new String(process.getInputStream().readAllBytes());
             int exitCode = process.waitFor();
 
-            System.out.println("pdflatex output:");
-            System.out.println(output);
 
             if (exitCode != 0) {
                 throw new RuntimeException("PDF generation failed: " + output);
@@ -187,13 +185,11 @@ public class ResumeDownloadGenerator {
             return "";
         }
 
-        String normalized = value
+        return value
                 .trim()
                 .toLowerCase(Locale.ROOT)
                 .replaceAll("[^a-z0-9]+", "_")
                 .replaceAll("^_+|_+$", "");
-
-        return normalized;
     }
 
     private void copyLatexSupportFiles(Path outputDir) throws Exception {

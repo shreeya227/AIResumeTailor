@@ -98,8 +98,6 @@ public class LLMService {
             ResponseEntity<String> response =
                     restTemplate.postForEntity(url, entity, String.class);
 
-            System.out.println("Gemini Raw Response:");
-            System.out.println(response.getBody());
 
             JsonNode root = mapper.readTree(response.getBody());
 

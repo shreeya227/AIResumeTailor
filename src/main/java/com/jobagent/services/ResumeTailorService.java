@@ -226,9 +226,6 @@ Resume Data:
 
             text = extractJsonPayload(text);
 
-            System.out.println("Tailor raw response:");
-            System.out.println(text);
-
 
             JsonNode tailoredJson = readTailoredJson(mapper, text);
             List<String> extractedJobSkills = llmService.extractSkills(jobDescription);
@@ -614,14 +611,10 @@ Resume Data:
             return false;
         }
 
-        if ((tailoredLower.contains("secure ") || tailoredLower.contains(" security"))
-                && !hasAuthSecurityEvidence
-                && !originalLower.contains("secure")
-                && !originalLower.contains("security")) {
-            return false;
-        }
-
-        return true;
+        return (!tailoredLower.contains("secure ") && !tailoredLower.contains(" security"))
+                || hasAuthSecurityEvidence
+                || originalLower.contains("secure")
+                || originalLower.contains("security");
     }
 
     private List<String> extractNumbers(String text) {
