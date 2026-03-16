@@ -7,7 +7,7 @@ The system extracts relevant skills from job postings, rewrites resume content t
 
 A Chrome extension allows users to extract job descriptions directly from job listing pages and generate tailored resumes with one click.
 
-```markdown
+
 ## Architecture
 
 ```mermaid
