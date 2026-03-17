@@ -39,6 +39,7 @@ document.getElementById("analyzeJob")
             resultElement.innerText = [
                 `Match Score: ${analysis.matchScore}%`,
                 `Matched Skills: ${formatList(analysis.matchedSkills)}`,
+                `Related Skills: ${formatList(analysis.relatedSkills)}`,
                 `Missing Skills: ${formatList(analysis.missingSkills)}`
             ].join("\n");
         } catch (error) {

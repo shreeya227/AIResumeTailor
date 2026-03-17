@@ -9,6 +9,7 @@ public class JobAnalysisResponse {
 
     private List<String> requiredSkills;
     private List<String> matchedSkills;
+    private List<String> relatedSkills;
     private List<String> missingSkills;
     private int matchScore;
 }

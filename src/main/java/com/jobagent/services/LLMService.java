@@ -13,10 +13,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 
 @Service
 public class LLMService {
+
+    private static final Set<String> BRANDED_AI_TOOLS = Set.of(
+            "chatgpt",
+            "github copilot",
+            "copilot",
+            "claude",
+            "gemini"
+    );
 
     @Value("${gemini.api.key}")
     private String apiKey;
@@ -58,6 +67,8 @@ public class LLMService {
                     - keep the most standard resume-friendly name
                     - prefer concise skill names like "Spring Boot", "REST APIs", "Kafka", "AWS"
                     - do not invent skills not explicitly supported by the job description
+                    - if the job description says generic phrases like "AI tools" or "AI productivity tools", keep them generic and do NOT infer branded products such as ChatGPT, GitHub Copilot, Claude, or Gemini unless the job description explicitly names them
+                    - do not infer vendor or product names from broad categories
 
                     Return RAW JSON ONLY.
                     Do not use markdown fences.
@@ -121,7 +132,16 @@ public class LLMService {
             List<String> skills = new ArrayList<>();
 
             json.get("skills").forEach(
-                    skill -> skills.add(skill.asText())
+                    skill -> {
+                        String extractedSkill = skill.asText().trim();
+                        if (extractedSkill.isBlank()) {
+                            return;
+                        }
+
+                        if (shouldKeepExtractedSkill(extractedSkill, jobDescription)) {
+                            skills.add(extractedSkill);
+                        }
+                    }
             );
 
             return skills;
@@ -132,8 +152,18 @@ public class LLMService {
 
         }
     }
-}
 
+    private boolean shouldKeepExtractedSkill(String extractedSkill, String jobDescription) {
+        String normalizedSkill = extractedSkill.toLowerCase();
+        String lowerJobDescription = jobDescription == null ? "" : jobDescription.toLowerCase();
+
+        if (BRANDED_AI_TOOLS.contains(normalizedSkill) && !lowerJobDescription.contains(normalizedSkill)) {
+            return false;
+        }
+
+        return true;
+    }
+}
 
 
 
