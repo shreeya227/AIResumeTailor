@@ -1,5 +1,5 @@
 
-# AI Resume Tailor 
+# Recast- Resume Tailor 
 
 An AI-powered resume tailoring platform that analyzes job descriptions and generates customized resumes using LLMs.
 
